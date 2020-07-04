@@ -1,0 +1,14 @@
+name: Get branch version
+
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Gets the version of the branch
+    steps:
+    - name: Get version
+      id: getversion
+      uses: diligencia/sementantic-git-version-action
+    - name: Echo name
+      run: echo "The name of the branch is ${{ steps.hello.outputs.branchname }}"
