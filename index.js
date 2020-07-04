@@ -13,8 +13,7 @@ async function getBranchName() {
     const options = {
         listeners: {
             stdout: (data) => output += data.toString()
-        },
-        cwd: './'
+        }
     };
 
     await execlib.exec('git', ['branch'], options);
