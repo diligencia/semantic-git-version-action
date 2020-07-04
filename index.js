@@ -2,6 +2,13 @@ const core = require('@actions/core');
 const execlib = require('@actions/exec');
 
 try {
+    const branchName = getBranchName();
+    core.setOutput("branchname", branchName);
+} catch (error) {
+    core.setFailed(error.message);
+}
+
+async function getBranchName() {
     let output = '';
     const options = {
         listeners: {
@@ -10,7 +17,6 @@ try {
     };
 
     await execlib.exec('git', ['branch'], options);
-    core.setOutput("branchname", output);
-} catch (error) {
-    core.setFailed(error.message);
+
+    return output;
 }
