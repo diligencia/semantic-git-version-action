@@ -11,4 +11,4 @@ jobs:
       id: getversion
       uses: diligencia/sementantic-git-version-action@master
     - name: Echo name
-      run: echo "The name of the branch is ${{ steps.hello.outputs.branchname }}"
+      run: echo "The name of the branch is ${{ steps.getversion.outputs.branchname }}"
