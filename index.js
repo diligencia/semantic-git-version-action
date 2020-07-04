@@ -9,7 +9,7 @@ try {
         }
     };
 
-    yield execlib.exec('git', ['branch'], options)
+    await execlib.exec('git', ['branch'], options);
     core.setOutput("branchname", output);
 } catch (error) {
     core.setFailed(error.message);
