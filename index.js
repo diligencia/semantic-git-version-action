@@ -10,6 +10,7 @@ try {
 
             if (versionNumber) {
                 core.setOutput('version', versionNumber);
+                console.log(versionNumber);
             }
         });
 } catch (error) {
