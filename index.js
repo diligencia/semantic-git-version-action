@@ -4,8 +4,6 @@ const execlib = require('@actions/exec');
 try {
     getBranchName()
         .then(name => {
-            core.setOutput("branchname", name)
-
             const versionNumber = extractVersion(name);
 
             if (versionNumber) {
