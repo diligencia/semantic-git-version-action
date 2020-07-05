@@ -38,15 +38,15 @@ function extractVersion(branch) {
     const regexp = /([0-9]\.[0-9]\.[0-9])|([0-9]\.[0-9])|([0-9])/g;
     const matches = branch.match(regexp);
 
-    const versions = null;
+    var versions = null;
     
     if (matches) {
         const version = matches.shift();
-        var versionParts = version.split('.');
+        const versionParts = version.split('.');
 
-        var major = versionParts[0];
-        var minor = versionParts.length >= 2 ? versionParts[1] : null;
-        var patch = versionParts.length >= 3 ? versionParts[2] : null;
+        const major = versionParts[0];
+        const minor = versionParts.length >= 2 ? versionParts[1] : null;
+        const patch = versionParts.length >= 3 ? versionParts[2] : null;
 
         versions = {
             version: version,
