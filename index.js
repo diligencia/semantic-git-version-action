@@ -3,7 +3,10 @@ const execlib = require('@actions/exec');
 
 try {
     getBranchName()
-        .then(name => core.setOutput("branchname", name));
+        .then(name => {
+            console.log(name);
+            core.setOutput("branchname", name)
+        });
 } catch (error) {
     core.setFailed(error.message);
 }
@@ -14,7 +17,6 @@ async function getBranchName() {
         listeners: {
             stdout: (data) => {
                 output += data.toString();
-                console.log(data);
             }
         }
     };
