@@ -9,8 +9,10 @@ try {
             const versionNumber = extractVersion(name);
 
             if (versionNumber) {
-                core.setOutput('version', versionNumber);
-                console.log(versionNumber);
+                core.setOutput('VERSION', versionNumber.version);
+                core.setOutput('MAJOR_VERSION', versionNumber.major);
+                core.setOutput('MINOR_VERSION', versionNumber.minor);
+                core.setOutput('PATCH_VERSION', versionNumber.patch);
             }
         });
 } catch (error) {
@@ -35,6 +37,24 @@ async function getBranchName() {
 function extractVersion(branch) {
     const regexp = /([0-9]\.[0-9]\.[0-9])|([0-9]\.[0-9])|([0-9])/g;
     const matches = branch.match(regexp);
+
+    const versions = null;
     
-    return matches ? matches.shift() : null;
+    if (matches) {
+        const version = matches.shift();
+        var versionParts = version.split('.');
+
+        var major = versionParts[0];
+        var minor = versionParts.length >= 2 ? versionParts[1] : null;
+        var patch = versionParts.length >= 3 ? versionParts[2] : null;
+
+        versions = {
+            version: version,
+            major: major,
+            minor: minor,
+            patch: patch
+        }
+    }
+    
+    return versions
 }
