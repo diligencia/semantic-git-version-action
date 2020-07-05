@@ -1,4 +1,5 @@
-name: 'Semantic git version action'
+name: 'Semantic branch version'
+author: 'Koen Eijkemans'
 description: 'Github action that grabs a version from the branch name'
 outputs:
   branchname:
@@ -6,3 +7,6 @@ outputs:
 runs:
   using: 'node12'
   main: 'index.js'
+branding:
+  icon: 'check'
+  color: 'green'
