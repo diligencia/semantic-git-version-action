@@ -2,12 +2,8 @@ const core = require('@actions/core');
 const execlib = require('@actions/exec');
 
 try {
-    const branchName = getBranchName();
-    core.setOutput("branchname", branchName);
-
-    if (branchName) {
-        console.log('We got it! : ' + branchName);
-    }
+    getBranchName()
+        .then(name => core.setOutput("branchname", name));
 } catch (error) {
     core.setFailed(error.message);
 }
