@@ -27,12 +27,14 @@ async function getBranchName() {
         }
     };
 
-    await execlib.exec('git', ['branch'], options);
+    await execlib.exec('git', ['branch', '--show-current'], options);
 
     return output;
 }
 
 function extractVersion(branch) {
-    const regexp = /^([0-9]\.[0-9]\.[0-9])|([0-9]\.[0-9])|([0-9])$/;
-    return branch.match(regexp);
+    const regexp = /([0-9]\.[0-9]\.[0-9])|([0-9]\.[0-9])|([0-9])/g;
+    const matches = branch.match(regexp);
+    
+    return matches ? matches.shift() : null;
 }
