@@ -3,10 +3,12 @@ name: Get branch version
 on: [push]
 
 jobs:
-  hello_world_job:
+  build:
     runs-on: ubuntu-latest
+    
     name: Gets the version of the branch
     steps:
+    - uses: actions/checkout@v2 
     - name: Get version
       id: getversion
       uses: diligencia/semantic-git-version-action@master
