@@ -4,8 +4,13 @@ const execlib = require('@actions/exec');
 try {
     getBranchName()
         .then(name => {
-            console.log(name);
             core.setOutput("branchname", name)
+
+            const versionNumber = extractVersion(name);
+
+            if (versionNumber) {
+                core.setOutput('version', versionNumber);
+            }
         });
 } catch (error) {
     core.setFailed(error.message);
@@ -23,9 +28,10 @@ async function getBranchName() {
 
     await execlib.exec('git', ['branch'], options);
 
-    if (output) {
-        console.log('Got some sweet output...' + output);
-    }
-
     return output;
+}
+
+function extractVersion(branch) {
+    const regexp = /^([0-9]\.[0-9]\.[0-9])|([0-9]\.[0-9])|([0-9])$/;
+    return branch.match(regexp);
 }
